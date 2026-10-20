@@ -34,6 +34,7 @@ export default function App() {
     // Establish sign in v sign up
     const [showSignIn, setShowSignIn] = useState(true)
 
+    const tableName = 'Task Table_test'
 
     // useEffect used like this, with "}, [])" at the bottom, only fires on the very first render
     // This one fetches the table from Supabase
@@ -58,7 +59,7 @@ export default function App() {
                 const { data, error } = await supabase
 
                     // Use FROM to select "Task Table"
-                    .from('Task Table_test')
+                    .from(tableName)
                     // Use SELECT to select all rows "*"
                     .select('*')
 
@@ -169,7 +170,7 @@ export default function App() {
         const { data, error} = await supabase
 
             // Choose 'Task Table' table
-            .from('Task Table')
+            .from(tableName)
             // Insert a row based on the input, set complete to false, no id setting necessary
             .insert({
                 title: newTaskName,
@@ -202,7 +203,7 @@ export default function App() {
         }
 
         const { data, error } = await supabase
-            .from('Task Table')
+            .from(tableName)
 
             .update({ title: newTitle})
 
@@ -247,7 +248,7 @@ export default function App() {
 
         // Send an update request to Supabase and extract the returned row ("data") and any error
         const { data, error } = await supabase
-            .from('Task Table')
+            .from(tableName)
 
             // Update the "complete" column to the opposite of the task's current value
             .update({ complete: !task.complete })
@@ -285,7 +286,7 @@ export default function App() {
 
         // Send a delete request to Supabase and extract any reported error
         const { error } = await supabase
-            .from('Task Table')
+            .from(tableName)
 
             // Request that the matching row be deleted
             .delete()
