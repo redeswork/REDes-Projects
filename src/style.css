@@ -471,6 +471,12 @@ button.underline {
 
   transition: box-shadow 0.3s, transform 0.3s;
   
+  @media (max-width: 479px) {
+
+    flex-direction: column;
+    align-items:flex-end;
+  }
+  
 }
 
 .task-item:hover {
