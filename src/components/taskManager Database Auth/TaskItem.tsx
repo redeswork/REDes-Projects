@@ -19,20 +19,23 @@ export function TaskItem( { label, isEnabled, taskId, updateTaskState, removeTas
 
         <div className="task-item">
 
-            <IconButtonToggle
-                iconButtonToggleData={{
-                    iconImg: "https://raw.githubusercontent.com/redeswork/REDes-Assets/refs/heads/main/icons/tick_light%20(%23f3f3f3).png",
-                    isEnabled: isEnabled,
-                    handleClick: () => updateTaskState(taskId)
-            }}/>
+            <div className="content auto-w" style={{gridArea: "a", justifySelf: "start"}}>
+                <IconButtonToggle
+                    
+                    iconButtonToggleData={{
+                        iconImg: "https://raw.githubusercontent.com/redeswork/REDes-Assets/refs/heads/main/icons/tick_light%20(%23f3f3f3).png",
+                        isEnabled: isEnabled,
+                        handleClick: () => updateTaskState(taskId)
+                    }}/>
+            </div>
 
-            <div className="content">
+            <div className="content" style={{gridArea: "c", justifyContent: "start" }}>
 
                 <TaskItemText text={label} id={taskId} updateTaskTitle={updateTaskTitle} editId={editId} setEditId={setEditId}/>
 
             </div>
 
-            <div className="content auto-w">
+            <div className="content auto-w" style={{gridArea: "b", justifySelf: "end"}}>
 
                 <IconButton
                 iconButtonData={{

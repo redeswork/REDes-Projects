@@ -19,7 +19,7 @@ type iconButtonToggleProps = {
     iconButtonToggleData?: iconButtonToggleData
 }
 
-export function IconButtonToggle({ iconButtonToggleData = {}}: iconButtonToggleProps) {
+export function IconButtonToggle({ iconButtonToggleData = {}}: iconButtonToggleProps,) {
 
     
     const defaults = {
