@@ -3,7 +3,6 @@ import "./style.css"
 import {
     Button,
     IconButton,
-    CounterDiv,
 } from "../components/basicComponents"
 
 
@@ -58,7 +57,7 @@ export default function App() {
                 </div>
 
                 <div className="content">
-                    <CounterDiv />
+                    {/* <CounterDiv /> */}
                 </div>
 
                 {/* <div className="content">
