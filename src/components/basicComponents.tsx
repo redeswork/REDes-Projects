@@ -1,7 +1,7 @@
 import { IconButton } from "./iconButton"
 import { CounterDiv } from "./counterDiv"
-import { TestList } from "./testList"
-export { IconButton, CounterDiv, TestList }
+// import { TestList } from "./testList"
+export { IconButton, CounterDiv }
 
 function CardImage() {
 
