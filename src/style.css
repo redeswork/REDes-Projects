@@ -347,8 +347,8 @@ button.underline {
   aspect-ratio: 1/1;
 
   @media (max-width: 479px) {
-    width: 16px;
-    height: 16px
+    width: 32px;
+    height: 32px
   }
 }
 

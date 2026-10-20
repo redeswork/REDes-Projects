@@ -355,7 +355,7 @@ export default function App() {
 
                         <h1 className="page-heading" style={{fontWeight: 400}}><span style={{fontWeight: 700}}>RE Design </span>Task Manager</h1>
 
-                        <button onClick={checkSession}>Check Session</button>
+                        {/* <button onClick={checkSession}>Check Session</button> */}
 
                         <div className='content'>
 
