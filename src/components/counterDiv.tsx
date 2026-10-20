@@ -46,7 +46,7 @@ export function CounterDiv() {
 
 
 
-    function CounterBox({search}: {search: string}) {
+    function CounterBox() {
 
         return (
 
@@ -82,7 +82,7 @@ export function CounterDiv() {
                     direction: "left",
                     handleClick: decreaseCount
                 }}/>
-                <CounterBox search={search}/>
+                <CounterBox />
                 <IconButton
                 iconButtonData={{
                     variant: "outline",

@@ -1,5 +1,5 @@
 import { TaskItem } from "./TaskItem"
-import { taskData, type taskDataType } from "./taskData"
+import { type taskDataType } from "./taskData"
 
 
 export function TaskList({tasks, currentSort, updateTaskState, removeTask}: {tasks: taskDataType[], currentSort: string, updateTaskState: (taskId: number) => void, removeTask: (taskId: number) => void }) {

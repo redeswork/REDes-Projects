@@ -86,7 +86,7 @@ export default function App() {
 
     useEffect(() => {
         const {data} = supabase.auth.onAuthStateChange(
-            (event, session) => {
+            (_event, session) => {
                 setUser(session?.user || null)
             }
         );

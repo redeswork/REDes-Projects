@@ -1,25 +1,14 @@
 import "./style.css"
 // import { useState } from "react"
-import type { ReactNode } from "react"
 import {
-    Card,
     Button,
     IconButton,
     CounterDiv,
-    TestList
 } from "../components/basicComponents"
-import { ProjectCardList } from "../components/projectCardList"
 
 
-function CardHolder({children}: {children: ReactNode}) {
 
-    return (
 
-        <div className="cards">
-            {children}
-        </div>
-    )
-}
 
 
 

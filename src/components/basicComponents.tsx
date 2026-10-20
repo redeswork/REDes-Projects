@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { IconButton } from "./iconButton"
 import { CounterDiv } from "./counterDiv"
 import { TestList } from "./testList"
@@ -69,8 +68,6 @@ export function Button({ buttonData = {} }: buttonProps) {
         ...defaults,
         ...buttonData,
     }
-
-    const variant = data.variant || "primary"
 
     let setClass
 
