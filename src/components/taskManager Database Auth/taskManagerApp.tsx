@@ -58,7 +58,7 @@ export default function App() {
                 const { data, error } = await supabase
 
                     // Use FROM to select "Task Table"
-                    .from('Task Table')
+                    .from('Task Table_test')
                     // Use SELECT to select all rows "*"
                     .select('*')
 
