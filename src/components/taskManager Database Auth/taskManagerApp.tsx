@@ -153,12 +153,12 @@ export default function App() {
         console.log('Sign-in successful:', data)
     }
 
-    async function checkSession() {
-        const { data, error } = await supabase.auth.getSession()
+    // async function checkSession() {
+    //     const { data, error } = await supabase.auth.getSession()
 
-        console.log("Session:", data.session)
-        console.log("Session check error:", error)
-    }
+    //     console.log("Session:", data.session)
+    //     console.log("Session check error:", error)
+    // }
 
 
 
