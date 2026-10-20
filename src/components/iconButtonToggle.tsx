@@ -5,8 +5,8 @@ type iconButtonToggleData = {
 
     direction?: string,
 
-    width?: number,
-    height?: number,
+    // width?: number,
+    // height?: number,
 
     isInteractable?: boolean,
     isEnabled?: boolean
@@ -24,8 +24,8 @@ export function IconButtonToggle({ iconButtonToggleData = {}}: iconButtonToggleP
     
     const defaults = {
         iconImg: "https://raw.githubusercontent.com/redeswork/REDes-Assets/29672528e6aa6fefd3452fed429ab677ef53de15/icons/arrow-left-dark%20(%231f1f1f).svg",
-        width: 32,
-        height: 32,
+        // width: 32,
+        // height: 32,
         isInteractable: true,
         isEnabled: false,
         direction: "left",
@@ -77,8 +77,8 @@ export function IconButtonToggle({ iconButtonToggleData = {}}: iconButtonToggleP
         className="icon-button solid"
         onClick={handleToggle}
         style={{
-            width: data.width,
-            height: data.height,
+            // width: data.width,
+            // height: data.height,
             cursor: cursorMode,
             rotate: `${rotation}deg`,
             backgroundColor: data.isEnabled ? "#1f1f1f" : "#1f1f1f00"
