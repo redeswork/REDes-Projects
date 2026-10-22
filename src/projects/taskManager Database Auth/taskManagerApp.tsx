@@ -9,10 +9,12 @@ import { supabase } from '../../lib/supabase'
 import { SignUpForm } from './signUpForm'
 import { SignInForm } from './signInForm'
 import type { User } from '@supabase/supabase-js'
+import { useNavigate } from 'react-router'
 
 
 export default function App() {
 
+    const navigate = useNavigate()
     // 
     // Establish useState values
     // 
@@ -313,6 +315,8 @@ export default function App() {
         <section className="section">
 
             <div className="wrapper">
+
+                <button onClick={() => navigate("/")}>Back</button>
 
                 {user ? (
                     <div className='content'>
