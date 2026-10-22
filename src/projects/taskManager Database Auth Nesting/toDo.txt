@@ -1,0 +1,15 @@
+
+
+1. Actual list items components are not going to be able to be generic 
+
+-- Each type of list will need its own html and css
+
+
+2. Filtering and sorting can likely be done generically 
+
+-- Each list will need to own its own states for filtering and sorting
+
+-- This logic can be generic though
+
+
+3. 

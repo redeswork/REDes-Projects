@@ -10,6 +10,7 @@ export function SearchField({search, updateSearch}: {search: string, updateSearc
                 className="search-input"
                 name="search-field"
                 type="search"
+                placeholder="Search"
                 value={search}
                 onChange={(event) => updateSearch(event.target.value)}
                 ></input>

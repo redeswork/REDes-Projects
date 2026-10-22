@@ -1,5 +1,5 @@
-import { IconButton } from "../iconButton";
-import { IconButtonToggle } from "../iconButtonToggle";
+import { IconButton } from "../../components/iconButton";
+import { IconButtonToggle } from "../../components/iconButtonToggle";
 
 
 

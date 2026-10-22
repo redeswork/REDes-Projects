@@ -1,7 +1,7 @@
 import { InputField } from './inputField'
 import { useState, useEffect } from 'react'
 import '../../style.css'
-import { RadioButton } from '../radioButton'
+import { RadioButton } from '../../components/radioButton'
 import { TaskList } from './taskList'
 import { taskData, type taskDataType } from './taskData'
 

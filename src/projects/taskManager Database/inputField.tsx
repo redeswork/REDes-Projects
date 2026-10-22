@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { IconButton } from "../iconButton"
+import { IconButton } from "../../components/iconButton"
 
 export function InputField({onSubmit}: {onSubmit: (newTaskName: string) => void}) {
 
@@ -18,7 +18,7 @@ export function InputField({onSubmit}: {onSubmit: (newTaskName: string) => void}
 
     return (
 
-        <div>
+        <div className="content">
             <form className="content" onSubmit={handleSubmit}>
 
                 <input className="input-field"

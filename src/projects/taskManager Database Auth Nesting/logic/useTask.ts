@@ -1,34 +1,39 @@
+import type { User } from "@supabase/supabase-js";
+import { supabase } from "../../../lib/supabase";
 
-import { InputField } from './inputField'
-import { useState, useEffect } from 'react'
-import '../../style.css'
-import { RadioButton } from '../radioButton'
-import { TaskList } from './taskList'
-import type { taskDataType } from '../taskManager/taskData'
-import { supabase } from '../../lib/supabase'
+import { useState, useEffect } from "react";
 
+import type { taskDataType } from '../taskData'
 
-
-export default function App() {
-
-    // 
-    // Establish useState values
-    // 
-    // Establish a sortValue, preset it to "All" - this matches with the toggle to set the default to enabled
-    const [sortValue, updateSortValue] = useState("All");
+export function useTask(
+    
+    user: User | null,
+    tableName: string
+) {
 
     // Establish tasks using useState - set it to an array "[]" - of type "taskDataType[]" - make that array empty "([])"
     const [tasks, setTasks] = useState<taskDataType[]>([]);
 
-    // Establish a loading state boolean that defaults to true
-    const [isLoading, setIsLoading] = useState(true);
-
     // Establish a message state that defaults to ""
     const [errorMessage, setErrorMessage] = useState("");
 
+    // Establish a loading state boolean that defaults to true
+    const [isLoading, setIsLoading] = useState(true);
+
 
     // useEffect used like this, with "}, [])" at the bottom, only fires on the very first render
+    // This one fetches the table from Supabase
     useEffect(() => {
+
+        // Check for presence of user
+        if (!user) {
+            // If no user
+            // clear all tasks from previous session
+            setTasks([])
+            // no longer loading
+            setIsLoading(false)
+            return
+        }
 
         // "async" is important so that waiting for this doesn't prevent the rest of the code from running
         async function fetchTasks() {
@@ -39,7 +44,7 @@ export default function App() {
                 const { data, error } = await supabase
 
                     // Use FROM to select "Task Table"
-                    .from('Task Table')
+                    .from(tableName)
                     // Use SELECT to select all rows "*"
                     .select('*')
 
@@ -62,8 +67,8 @@ export default function App() {
         // Call the function defined above to start fetching the tasks
         fetchTasks()
 
-    }, [])
-
+    // Call this whenever user state changes
+    }, [user, tableName])
 
 
 
@@ -74,7 +79,7 @@ export default function App() {
         const { data, error} = await supabase
 
             // Choose 'Task Table' table
-            .from('Task Table')
+            .from(tableName)
             // Insert a row based on the input, set complete to false, no id setting necessary
             .insert({
                 title: newTaskName,
@@ -98,6 +103,7 @@ export default function App() {
 
     }
 
+
     async function updateTaskTitle(taskId: number, newTitle: string) {
 
         const task = tasks.find(task => task.id === taskId)
@@ -107,7 +113,7 @@ export default function App() {
         }
 
         const { data, error } = await supabase
-            .from('Task Table')
+            .from(tableName)
 
             .update({ title: newTitle})
 
@@ -137,7 +143,7 @@ export default function App() {
         )
 
     }
-    
+
     // Define an asynchronous function to update a task's completed status, using its id to identify the task
     async function updateTaskState(taskId: number) {
 
@@ -152,7 +158,7 @@ export default function App() {
 
         // Send an update request to Supabase and extract the returned row ("data") and any error
         const { data, error } = await supabase
-            .from('Task Table')
+            .from(tableName)
 
             // Update the "complete" column to the opposite of the task's current value
             .update({ complete: !task.complete })
@@ -185,13 +191,12 @@ export default function App() {
         )
     }
 
-
     // Define an asynchronous function to remove a task, using its id to identify the task
     async function removeTask(taskId: number) {
 
         // Send a delete request to Supabase and extract any reported error
         const { error } = await supabase
-            .from('Task Table')
+            .from(tableName)
 
             // Request that the matching row be deleted
             .delete()
@@ -213,62 +218,14 @@ export default function App() {
         )
     }
 
-    return (
-        
-        <section className="section">
 
-            <div className="wrapper">
-
-                <div className='content vertical'>
-
-                    <h1 className="page-heading" style={{fontWeight: 400}}><span style={{fontWeight: 700}}>RE Design </span>Task Manager</h1>
-
-                    
-                    <div className='content'>
-
-                        {/* Render the InputField component and pass createNewTask to it as a prop
-                            The child component can call this function when a task is submitted */}
-                        <InputField onSubmit={createNewTask}/>
-                    
-                    </div>
-
-                    <div className='content'>
-
-                        {/* Render three RadioButton components
-                            Each receives the current sort value and the function used to update it */}
-                        <RadioButton label="All" radioGroup='status' currentVal={sortValue} onChange={updateSortValue}/>
-                        <RadioButton label="Completed" radioGroup='status' currentVal={sortValue} onChange={updateSortValue}/>
-                        <RadioButton label="Uncompleted" radioGroup='status' currentVal={sortValue} onChange={updateSortValue}/>
-
-                    </div>
-
-                    <div className='content full-w'>
-
-                        {/* Conditional rendering: choose what to display based on the current state */}
-                        {isLoading ? (
-
-                            // If isLoading is true, display the loading message while the database request is in progress
-                            <div>
-
-                                <p style={{fontSize: "2rem", lineHeight: "1.2em"}}>Task List Loading...</p>
-                            
-                            </div>
-                        
-                        ) : errorMessage ? (
-
-                            // If loading has finished but errorMessage contains text, display that message
-                            <p>{errorMessage}</p>
-                        
-                        ) : (
-                            // If loading has finished and there is no error message, display the task list
-                            // Pass the current tasks, sort value, and update/delete functions into TaskList as props
-                            <TaskList tasks={tasks} currentSort={sortValue} updateTaskState={updateTaskState} removeTask={removeTask} updateTaskTitle={updateTaskTitle}/>
-                        )}
-                    </div>
-                    
-                </div>
-
-            </div>
-        </section>
-    )
+    return {
+        isLoading,
+        tasks,
+        errorMessage,
+        createNewTask,
+        updateTaskTitle,
+        updateTaskState,
+        removeTask
+    }
 }
