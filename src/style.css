@@ -316,6 +316,24 @@ button.underline {
 
   columns: 3;
   display: block;
+
+  /* Mobile */
+  @media (max-width: 479px) {
+
+    .cards {
+      columns: 1;
+    }
+
+  }
+
+  /* Tablet */
+  @media (min-width: 768px) and (max-width: 991px) {
+
+    .cards {
+      columns: 2;
+    }
+
+  }
 }
 
 .card {
