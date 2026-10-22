@@ -16,7 +16,7 @@ import { useNavigate } from 'react-router'
 
 export default function App() {
 
-    // 
+    
     // Establish useState values
     // 
     // Establish a sortValue, preset it to "All" - this matches with the toggle to set the default to enabled
