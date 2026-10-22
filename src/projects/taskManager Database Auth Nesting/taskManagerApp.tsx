@@ -129,7 +129,12 @@ export default function App() {
 
             <div className="wrapper">
 
-                <button onClick={() => navigate("/")}>Back</button>
+                <div>
+
+                    <button onClick={() => navigate("/")}>Back</button>
+
+                </div>
+
 
                 {/* SIGNING IN / UP */}
                 {user ? (
