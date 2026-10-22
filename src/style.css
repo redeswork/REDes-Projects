@@ -313,27 +313,22 @@ button.underline {
 }
 
 .cards.columns {
+    columns: 3;
+    display: block;
+}
 
-  columns: 3;
-  display: block;
-
-  /* Mobile */
-  @media (max-width: 479px) {
-
-    .cards {
-      columns: 1;
+/* Mobile */
+@media (max-width: 767px) {
+    .cards.columns {
+        columns: 1;
     }
+}
 
-  }
-
-  /* Tablet */
-  @media (min-width: 768px) and (max-width: 991px) {
-
-    .cards {
-      columns: 2;
+/* Tablet */
+@media (min-width: 768px) and (max-width: 991px) {
+    .cards.columns {
+        columns: 2;
     }
-
-  }
 }
 
 .card {
