@@ -36,7 +36,7 @@ export default function App() {
                 <div className='content vertical'>
 
                     <h1>Search Test</h1>
-                    <SearchField search={search} updateSearch={updateSearch} />
+                    <SearchField search={search} submittable={false} updateSearch={updateSearch} />
                     
                     <div className='content vertical'>
 
