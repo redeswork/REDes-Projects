@@ -14,13 +14,13 @@ export function BookItem(
             <div style={{gap: "1rem"}}>
                 <div>
 
-                    <h3 style={{fontSize:"var(--text-H5)"}}>{truncateText(title, 12)}</h3>
+                    <h3 style={{fontSize:"var(--text-H6)"}}>{truncateText(title, 12)}</h3>
                 
                 </div>
 
                 <div style={{width: "100%", aspectRatio:"3/4", paddingTop: "1rem", paddingBottom: "0.5rem", display: "flex", flexDirection:"column", justifyContent:"center", alignContent: "center"}}>
                     { coverUrl ? (
-                        <img src={coverUrl} alt={`${title} cover`} style={{width: "100%", aspectRatio:"3/4"}}></img>
+                        <img src={coverUrl} alt={`${title} cover`} style={{width: "calc(100% + 1.5rem)", marginLeft: "-0.75rem", aspectRatio:"3/4"}}></img>
                     ) : (
                         <p style={{color:"#ababab"}}>Cover Not Found</p>
                     )
