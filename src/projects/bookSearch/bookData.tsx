@@ -7,7 +7,9 @@ export type BookType = {
     title: string,
     author: string,
     published: number,
-    coverUrl: string | null
+    coverUrl: string | null,
+    authorKey: string,
+    bookUrl:string
 }
 
 export type openBookType = {
@@ -16,6 +18,7 @@ export type openBookType = {
     title: string,
     author_name: string[],
     first_publish_year: number,
-    cover_i: string
+    cover_i: string,
+    author_key: string
 
 }

@@ -38,7 +38,7 @@
 
   --text-P: clamp(0.875rem, 0.8447rem + 0.1294vw, 1rem);
 
-  --text-P-Small: clamp(0.7778rem, 0.77rem + 0.0334vw, 0.8rem);
+  --text-P-small: clamp(0.7778rem, 0.77rem + 0.0334vw, 0.8rem);
 
   /* WRAPPER VARS */
   --wrapper-w: min(90vw, clamp(337.5px, calc(78.815534vw + 41.941748px), 1555.2px));

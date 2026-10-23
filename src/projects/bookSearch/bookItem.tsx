@@ -1,9 +1,9 @@
-
+import { truncateText } from "./truncateText"
 
 
 export function BookItem(
-    {title, author, published, coverUrl}:
-    {title: string, author: string, published: number, coverUrl: string | null}
+    {title, author, published, coverUrl, bookUrl}:
+    {title: string, author: string, published: number, coverUrl: string | null, bookUrl: string}
 ) {
 
 
@@ -14,7 +14,7 @@ export function BookItem(
             <div style={{gap: "1rem"}}>
                 <div>
 
-                    <h3 style={{fontSize:"var(--text-H4)"}}>{title}</h3>
+                    <h3 style={{fontSize:"var(--text-H5)"}}>{truncateText(title, 12)}</h3>
                 
                 </div>
 
@@ -22,15 +22,19 @@ export function BookItem(
                     { coverUrl ? (
                         <img src={coverUrl} alt={`${title} cover`} style={{width: "100%", aspectRatio:"3/4"}}></img>
                     ) : (
-                        <p>Cover Not Found</p>
+                        <p style={{color:"#ababab"}}>Cover Not Found</p>
                     )
                 }
                 </div>
             </div>
             
             <div>
-                <p>{author}</p>
-                <p>Year Published: {published}</p>
+                <p style={{fontSize: "var(--text-P)"}}>{author}</p>
+                <p style={{fontSize: "var(--text-P)"}}>{published}</p>
+                <a href={bookUrl} target="_blank">
+                    <button style={{width:"100%", marginTop:"1rem"}}>View Book</button>
+
+                </a>
             </div>
 
         </div>

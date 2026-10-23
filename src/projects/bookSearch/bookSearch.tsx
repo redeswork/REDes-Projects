@@ -22,18 +22,25 @@ export default function App() {
 
     const [resultAmount, setResultAmount] = useState<number | 0>(0)
 
-    const maxBooks = 9;
+    const [booksInView, setBooksInView] = useState(0)
+
+    const maxBooks = 36;
+
+    const booksPerView = 9;
     
     useEffect(() => {
 
         async function fetchBooks() {
 
-            const url = `https://openlibrary.org/search.json?q=${search || "book"}&sort=random&limit=${maxBooks}`
+            const url = `https://openlibrary.org/search.json?q=${search || "book"}${search ? "" : "&sort=random"}&limit=${maxBooks}`
 
-            isLoading(loading)
+            isLoading(true)
 
             try {
 
+                console.log("Search changed:", search)
+                console.log("Search state:", search)
+                console.log("Fetch URL:", url)
                 const doFetch = await fetch(url)
 
                 if (!doFetch.ok) {
@@ -48,7 +55,8 @@ export default function App() {
                         title: book.title,
                         author: book.author_name?.join(', ') ?? "Unknown Author",
                         published: book.first_publish_year,
-                        coverUrl: book.cover_i ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg` : null
+                        coverUrl: book.cover_i ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg` : null,
+                        bookUrl: book.key ? `https://openlibrary.org${book.key}` : null
                     })
                 )
 
@@ -71,7 +79,7 @@ export default function App() {
 
         fetchBooks()
 
-    }, [])
+    }, [search])
 
 
     return (
@@ -79,17 +87,30 @@ export default function App() {
         <section className="section">
 
             <div className="wrapper">
-                
+
                 <button onClick={() => navigate("/")}>Back</button>
 
                 <h1 className='section-heading'>RE Design Book Search</h1>
 
-                <SearchField search={search} updateSearch={updateSearch}/>
+                <SearchField search={search} updateSearch={updateSearch} submittable={true}/>
 
-                <div className='content vertical'>
+                <div className='content-card'>
 
-                    <BookList search={search} resultsAmount={resultAmount} books={books} maxBooks={maxBooks}/>
+                    <div className='content vertical'>
+
+
+                    {loading ? (
+                        
+                        <p>Loading Books...</p>
+                        
+                    ) : (
+                        
+                        <BookList resultsAmount={resultAmount} books={books} maxBooks={maxBooks} booksPerView={booksPerView} booksInView={booksInView} setBooksInView={setBooksInView}/>
+                        
+                    )}
+
                     
+                    </div>
                 </div>
             </div>
         </section>
