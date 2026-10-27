@@ -36,7 +36,7 @@ export default function App() {
     // Establish sign in v sign up
     const [showSignIn, setShowSignIn] = useState(true)
 
-    const tableName = 'Task Table_test'
+    const tableName = 'Task Table'
 
     // useEffect used like this, with "}, [])" at the bottom, only fires on the very first render
     // This one fetches the table from Supabase

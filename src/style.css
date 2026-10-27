@@ -255,8 +255,13 @@ button.underline {
 
 }
 
+.content.gap-half {
+  gap: 0.5rem;
+}
+
 .content.left-aligned {
-  justify-content: left;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .content.vertical {
@@ -343,6 +348,11 @@ button.underline {
 
   border-radius: 0.5rem;
 
+}
+
+.card.no-corner {
+  border-radius: 0;
+  overflow: auto;
 }
 
 .card-content {
@@ -632,4 +642,18 @@ form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+}
+
+.pill {
+
+  font-size: var(--text-P-small);
+  line-height: 1em;
+
+  color: #f3f3f3;
+  background-color: #3f3f3f;
+
+  border-radius: 9000px;
+
+  padding: 0.5em 0.75em;
+
 }
