@@ -2,11 +2,13 @@
 import { InputField } from './inputField'
 import { useState, useEffect } from 'react'
 import '../../style.css'
+import './taskManager.css'
 import { RadioButton } from '../../components/radioButton'
 import { TaskList } from './taskList'
 import { supabase } from '../../lib/supabase'
 import { SignUpForm } from './signUpForm'
 import { SignInForm } from './signInForm'
+import { TableSelector } from './components/tableSelector'
 import type { User } from '@supabase/supabase-js'
 
 import { useTask } from './logic/useTask'
@@ -30,7 +32,11 @@ export default function App() {
     // Establish sign in v sign up
     const [showSignIn, setShowSignIn] = useState(true)
 
-    const tableName = 'Task Table_test'
+    // Determine table
+    const [currentTable, setCurrentTable] = useState("Task Table")
+
+
+    const tables = ["Task Table", "Website_Table"]
 
     const  {
         isLoading,
@@ -38,13 +44,14 @@ export default function App() {
         errorMessage,
         createNewTask,
         updateTaskTitle,
+        updateTaskOrder,
         updateTaskState,
         removeTask
-    } = useTask(user, tableName)
+    } = useTask(user, currentTable)
 
 
 
-
+    // Check sign-in
     useEffect(() => {
         const {data} = supabase.auth.onAuthStateChange(
             (_event, session) => {
@@ -180,6 +187,7 @@ export default function App() {
 
                         {/* <button onClick={checkSession}>Check Session</button> */}
 
+                        <TableSelector tables={tables} currentTable={currentTable} setCurrentTable={setCurrentTable}/>
                         <div className='content'>
 
                             {/* Render the InputField component and pass createNewTask to it as a prop
@@ -218,7 +226,7 @@ export default function App() {
                             ) : (
                                 // If loading has finished and there is no error message, display the task list
                                 // Pass the current tasks, sort value, and update/delete functions into TaskList as props
-                                <TaskList tasks={tasks} currentSort={sortValue} updateTaskState={updateTaskState} removeTask={removeTask} updateTaskTitle={updateTaskTitle}/>
+                                <TaskList tasks={tasks} currentSort={sortValue} updateTaskState={updateTaskState} removeTask={removeTask} updateTaskTitle={updateTaskTitle} updateTaskOrder={updateTaskOrder}/>
                             )}
                         </div>
                         

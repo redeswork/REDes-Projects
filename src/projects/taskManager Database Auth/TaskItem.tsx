@@ -5,8 +5,10 @@ import { TaskItemText } from "./taskItemText";
 
 
 
-export function TaskItem( { label, isEnabled, taskId, updateTaskState, removeTask, updateTaskTitle, editId, setEditId }:
-    {label: string,
+export function TaskItem( { label, taskOrder, isEnabled, taskId, updateTaskState, removeTask, updateTaskTitle, editId, setEditId }:
+    {
+        label: string,
+        taskOrder: number,
         isEnabled: boolean,
         taskId: number,
         updateTaskState: (taskId: number) => void,
@@ -30,6 +32,8 @@ export function TaskItem( { label, isEnabled, taskId, updateTaskState, removeTas
             </div>
 
             <div className="content" style={{gridArea: "c", justifyContent: "start" }}>
+
+                <p className="taskOrder">{taskOrder}</p>
 
                 <TaskItemText text={label} id={taskId} updateTaskTitle={updateTaskTitle} editId={editId} setEditId={setEditId}/>
 

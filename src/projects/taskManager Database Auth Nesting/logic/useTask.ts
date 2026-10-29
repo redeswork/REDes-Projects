@@ -144,6 +144,46 @@ export function useTask(
 
     }
 
+    async function updateTaskOrder(taskId: number, newOrder: number) {
+
+        const task = tasks.find(task => task.id === taskId)
+
+        if (!task) {
+            return
+        }
+
+        const { data, error } = await supabase
+            .from(tableName)
+
+            .update({ order: newOrder})
+
+            .eq('id', taskId)
+
+            .select()
+
+            .single()
+
+        // If there is an error - print the error to console, set our error message - return so try{} fails
+        if (error) {
+            console.error('Error fetching tasks:', error)
+            setErrorMessage("Couldn't load tasks. Please try again.")
+            return
+        }
+
+        // Update the tasks array using the current state supplied by React
+        setTasks(currentTasks =>
+
+            // Use .map() to create a new array by checking each task in the current array
+            currentTasks.map(currentTask =>
+
+                // If this is the task we updated, replace it with the updated row from Supabase
+                // Otherwise, keep the existing task unchanged
+                currentTask.id === taskId ? data : currentTask
+            )
+        )
+
+    }
+
     // Define an asynchronous function to update a task's completed status, using its id to identify the task
     async function updateTaskState(taskId: number) {
 
@@ -225,6 +265,7 @@ export function useTask(
         errorMessage,
         createNewTask,
         updateTaskTitle,
+        updateTaskOrder,
         updateTaskState,
         removeTask
     }

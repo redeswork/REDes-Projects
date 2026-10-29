@@ -1,0 +1,14 @@
+
+
+
+.task-order {
+
+    font-size: var(--text-H6);
+
+    padding: 0.25em;
+
+    color: #f3f3f3;
+    background-color: #1f1f1f;
+
+    border-radius: 0.25em;
+}

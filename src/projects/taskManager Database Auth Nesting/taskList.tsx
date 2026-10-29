@@ -1,12 +1,11 @@
 import { TaskItem } from "./TaskItem"
 import { type taskDataType } from "./taskData"
-import { useState } from "react"
+import { Fragment } from 'react'
 
 
-export function TaskList({tasks, currentSort, updateTaskState, removeTask, updateTaskTitle}:
-    {tasks: taskDataType[], currentSort: string, updateTaskState: (taskId: number) => void, removeTask: (taskId: number) => void, updateTaskTitle: (taskId: number, newTitle: string) => void }) {
+export function TaskList({tasks, currentSort, updateTaskState, removeTask, updateTaskTitle, updateTaskOrder}:
+    {tasks: taskDataType[], currentSort: string, updateTaskState: (taskId: number) => void, removeTask: (taskId: number) => void, updateTaskTitle: (taskId: number, newTitle: string) => void,updateTaskOrder: (taskId: number, newOrder: number) => void }) {
 
-    const [editId, setEditId] = useState<number | null>(null)
 
     
     const filteredTasks = tasks.filter((item) => {
@@ -34,7 +33,7 @@ export function TaskList({tasks, currentSort, updateTaskState, removeTask, updat
     })
     
 
-    filteredTasks.sort((a, b) => a.id - b.id)
+    filteredTasks.sort((a, b) => a.order - b.order)
 
     console.log(filteredTasks)
 
@@ -42,29 +41,33 @@ export function TaskList({tasks, currentSort, updateTaskState, removeTask, updat
 
         return (
 
-            <li
-            key={item.id}>
+            <Fragment key={item.id}>
 
                 <TaskItem
                 label={item.title}
+                order={item.order}
                 isEnabled={item.complete}
                 taskId={item.id}
                 updateTaskState={updateTaskState}
                 removeTask={removeTask}
                 updateTaskTitle={updateTaskTitle}
-                // canEditId={canEditId}
-                editId={editId}
-                setEditId={setEditId}/>
+                updateTaskOrder={updateTaskOrder}
+                />
 
-            </li>
+            </Fragment>
         )
     })
 
     return (
-        <ul className="task-list shadow">
+        <div className="task-list shadow">
 
-            {taskList}
+            <div className="task-grid">
+                <p className="task-content-desc" style={{gridColumn: "1/2", gridRow: "1/2"}}>ORDER</p>
+                <p className="task-content-desc" style={{gridColumn: "2/5", gridRow: "1/2"}}>TASK</p>
+                {taskList}
+            </div>
+            
 
-        </ul>
+        </div>
     )
 }

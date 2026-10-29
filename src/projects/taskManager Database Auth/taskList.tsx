@@ -47,6 +47,7 @@ export function TaskList({tasks, currentSort, updateTaskState, removeTask, updat
 
                 <TaskItem
                 label={item.title}
+                taskOrder={item.order}
                 isEnabled={item.complete}
                 taskId={item.id}
                 updateTaskState={updateTaskState}

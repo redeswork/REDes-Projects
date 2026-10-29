@@ -1,24 +1,28 @@
 import { useState, useRef, useEffect } from "react"
 
 
-export function TaskItemText({text, id, updateTaskTitle, editId, setEditId }:
-    {text: string, id: number, updateTaskTitle: (taskId: number, newTaskTitle: string) => void, editId: number | null, setEditId: (value: number | null) => void}) {
+export function TaskItemText(
+    {field, text, id, updateTaskTitle, editId, setEditId }:
+    {field: {name: string, type: string}, text: string, id: number, updateTaskTitle: (taskId: number, newTaskTitle: string) => void, editId: string | null, setEditId: (value: string | null) => void}) {
 
     const [newTitle, updateNewTitle] = useState(text)
+
+    const editKey = `${id}-${field.name}`
 
     const inputRef = useRef<HTMLTextAreaElement>(null);
 
     useEffect(() => {
 
-        if (editId === id) {
+        if (editId === editKey) {
             inputRef.current?.focus()
         }
-    }, [editId, id])
+    }, [editId, editKey])
 
 
     function toggleEditable() {
-
-        setEditId(id)
+        setEditId(editKey)
+        console.log("Clicked task:", editKey);
+        setEditId(editKey)
 
     }
 
@@ -33,7 +37,7 @@ export function TaskItemText({text, id, updateTaskTitle, editId, setEditId }:
 
         <div className="content left-aligned">
 
-            {(editId !== id) ? (
+            {(editId !== editKey) ? (
 
                 <button className="left-aligned unstyled no-bg" style={{color: "#1f1f1f"}} onClick={toggleEditable}>
 

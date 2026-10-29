@@ -500,8 +500,40 @@ button.underline {
   font-size: var(--button--font-size);
 }
 
+.divider {
+  width: 100%;
+  grid-column: 1/-1;
+
+  height: 1px;
+  background-color: #1f1f1f;
+}
 
 .task-item {
+
+  width: 100%;
+  display: flex;
+
+  grid-column: 1/5;
+
+
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.task-item-header {
+
+  width: 100%;
+  display: grid;
+
+  grid-column: 1/5;
+
+  /* flex-direction: row; */
+  align-items: stretch;
+
+  grid-template-columns: subgrid;
+}
+
+.task-item-wrap {
 
   width: 100%;
   max-width: 100%;
@@ -515,11 +547,12 @@ button.underline {
 
   font-size: 1.25rem;
 
-  display: flex;
-  flex-direction: row;
+  display: grid;
 
-  justify-content: space-between;
-  align-items: center;
+  grid-template-columns: subgrid;
+
+
+  grid-column: 1/5;
 
   gap: 1rem;
 
@@ -568,6 +601,17 @@ button.underline {
 
   gap: 1rem;
 
+}
+
+.task-grid {
+
+  display: grid;
+
+  width: 100%;
+
+  grid-template-columns: auto 1fr auto auto;
+  grid-column: 1/5;
+  gap: 1rem;
 }
 
 .content-card {
@@ -656,4 +700,30 @@ form {
 
   padding: 0.5em 0.75em;
 
+}
+
+
+
+.task-content {
+
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: auto 1fr;
+
+  gap: 1rem;
+}
+
+.task-content-cell {
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 0.5rem;
+}
+
+.task-content-desc {
+
+  font-size: var(--text-P);
+  color: #3f3f3f;
 }
